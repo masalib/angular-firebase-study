@@ -1,0 +1,54 @@
+<div class="page">
+  <section class="card">
+    <div class="card-header">
+      NgChat　
+    </div>
+    <div class="card-block">
+      <ng-container *ngFor="let comment of comments;let i=index"><!-- iを追加 -->
+        <div class="media">
+          <div class="media-left" *ngIf="comment.user.uid !== current_user.uid">
+            <a href="#" class="icon-rounded">{{comment.initial}}</a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{comment.user.name}}  Date: {{comment.date | chatDate}} 
+              <button class="btn btn-primary btn-sm" (click)="toggleEditComment(i)">編集</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteComment(comment.key)">削除</button>
+            </h4>
+            <ng-container *ngIf="!comment.edit_flag">
+              {{comment.content}}
+            </ng-container>
+            <ng-container *ngIf="comment.edit_flag">
+              <div class="input-group">
+                <input type="text" class="form-control" 
+                [(ngModel)]="comment.content"
+                name="edit_comment">
+              </div>
+              <div class="edit-buttons">
+                <button class="btn btn-success btn-sm" (click)="saveEditComment(i, comment.key)">保存</button>
+                <button class="btn btn-warning btn-sm" (click)="resetEditComment(i)">リセット</button>    
+              </div>
+            </ng-container>
+          </div>
+          <div class="media-right" *ngIf="comment.user.uid === current_user.uid">
+            <a href="#" class="icon-rounded">{{comment.initial}}</a>
+          </div>
+        </div>
+        <hr> 
+      </ng-container>
+    </div>
+  </section>
+
+  <section class="page-footer">
+    <form class="chart-form">
+      <div class="input-group">
+        <input type="text" class="form-control" 
+        [(ngModel)]="content"
+        name="comment" 
+        placeholder="Comment">
+        <span class="input-group-btn">
+          <button class="btn btn-info" type="button" (click)="addComment(content)">SEND</button>
+        </span>
+      </div>
+    </form>
+  </section>
+</div>
