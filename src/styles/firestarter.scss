@@ -69,3 +69,16 @@ body {
   box-shadow: none;
   opacity: .6;
 }
+/* PCのときにのみ表示 */
+@media screen and (max-width: 1024px) {
+    .text_pc_only {
+        display: none;
+    }
+}
+
+/* スマホ・タブレットのときにのみ表示 */
+@media screen and (min-width: 1025px) {
+    .text_sptab_only {
+        display: none;
+    }
+}

@@ -24,8 +24,11 @@ import { UploadModule } from './uploads/shared/upload.module';
 import { UiModule }     from './ui/shared/ui.module';
 ///// End FireStarter
 
+//chat
 import { ChatComponent } from './chat/chat.component';
 
+//adsense
+import { AdsenseModule } from 'ng2-adsense';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,10 @@ import { ChatComponent } from './chat/chat.component';
     ItemModule,
     UiModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AdsenseModule.forRoot({
+          adClient: 'ca-pub-1411576193652714',
+          adSlot: 3322118132
+        }),
   ],
   bootstrap: [
     AppComponent
