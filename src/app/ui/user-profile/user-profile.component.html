@@ -2,9 +2,9 @@
 
     <!-- User logged in -->
     <div class="box" *ngIf="auth.currentUser">
-        <h4>こんにちは, {{ auth.currentUserDisplayName }}</h4>
+        <h4> {{ auth.currentUserDisplayName }}</h4>
         <img class="card-img-top" [src]="auth.currentUser.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px>
-        <p class="text-truncate">UID: {{ auth.currentUserId }}</p>
+      <!--  <p class="text-truncate">UID: {{ auth.currentUserId }}</p>-->
         <button class="button" (click)="logout()">Logout</button>
 
    </div>
@@ -12,7 +12,6 @@
     <!-- User NOT logged in -->
     <div class="box" *ngIf="!auth.currentUser">
         <h4>名無しさん{{ auth.currentUserDisplayName }}</h4>
-        <p class="card-text">Login to get started...</p>
         <button class="button" routerLink="/login">Login</button>
 
     </div>
