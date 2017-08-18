@@ -1,11 +1,18 @@
 
 # masalib angular-firebase-study App
 
+angular and firebase study app
 
+angular4 more than
 
+not test angular2
 
 ## Usage
+
 Create an account at https://firebase.google.com/
+
+Create project at https://firebase.google.com/
+
 - `git clone https://github.com/masalib/angular-firebase-study.git angular-firebase-study`
 - `cd angular-firebase-study`
 - `npm install`
@@ -34,4 +41,19 @@ export const environment = {
 };
 ```
 
+
 And finally `ng serve`
+
+vagrant case
+ng serve --host 192.168.33.10 --port 4200 --live-reload true
+
+
+
+
+## inspire
+
+oauth
+https://github.com/codediodeio/angular-firestarter.git
+
+chat
+https://github.com/Yamamoto0525/NgChat
