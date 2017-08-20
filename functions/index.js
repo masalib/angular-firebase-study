@@ -1,65 +1,36 @@
-'use strict';
-
-const functions = require('firebase-functions');
+var functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 const request = require('request-promise');
-
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-
-
+const _ = require('lodash');
 // List of output languages.
-const LANGUAGES = ['en', 'es', 'de', 'fr', 'sv', 'ga', 'it', 'jp'];
+const LANGUAGES = ['es', 'fr', 'ar', 'ja'];
 
-
-const TranslateApikey = "tese";
-
-
-
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
-  //test start
-  console.log("Hello world");
-  console.log("Hello world" + TranslateApikey);
-  //console.log(functions.config().firebase.apiKey);
-
-
-});
-
-// Translate an incoming message.
-exports.translate = functions.database.ref('/messages/{languageID}/{messageID}').onWrite(event => {
+exports.translate = functions.database.ref('/translations/{translationId}').onWrite(event => {
   const snapshot = event.data;
-  if (snapshot.val().translated) {
-    return;
-  }
   const promises = [];
-  for (let i = 0; i < LANGUAGES.length; i++) {
-    var language = LANGUAGES[i];
-    if (language !== event.params.languageID) {
-      promises.push(createTranslationPromise(event.params.languageID, language, snapshot));
-    }
-  }
-  return Promise.all(promises);
+  _.each(LANGUAGES, (lang) => {
+      console.log(lang)
+      promises.push(createTranslationPromise(lang, snapshot));
+   })
+  return Promise.all(promises)
 });
-
 // URL to the Google Translate API.
-function createTranslateUrl(source, target, payload) {
-  return `https://www.googleapis.com/language/translate/v2?key=${functions.config().firebase.apiKey}&source=${source}&target=${target}&q=${payload}`;
+function createTranslateUrl(lang, text) {
+  return `https://www.googleapis.com/language/translate/v2?key=${functions.config().firebase.apiKey}&source=en&target=${lang}&q=${text}`;
 }
-
-function createTranslationPromise(source, target, snapshot) {
+function createTranslationPromise(lang, snapshot) {
   const key = snapshot.key;
-  const message = snapshot.val().message;
-  return request(createTranslateUrl(source, target, message), {resolveWithFullResponse: true}).then(
+  const text = snapshot.val().english;
+  let translation = {}
+  return request(createTranslateUrl(lang, text), {resolveWithFullResponse: true}).then(
       response => {
         if (response.statusCode === 200) {
-          const data = JSON.parse(response.body).data;
-          return admin.database().ref(`/messages/${target}/${key}`)
-              .set({message: data.translations[0].translatedText, translated: true});
+          const resData = JSON.parse(response.body).data;
+          translation[lang] = resData.translations[0].translatedText
+          return admin.database().ref(`/translations/${key}`)
+              .update(translation);
         }
-        throw response.body;
+        else throw response.body;
       });
 }

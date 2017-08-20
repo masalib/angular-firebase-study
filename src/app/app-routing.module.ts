@@ -10,14 +10,15 @@ import { ReadmePageComponent } from './ui/readme-page/readme-page.component';
 import { CoreModule } from './core/core.module'
 
 import { ChatComponent } from './chat/chat.component';
+import { TextTranslateComponent } from './text-translate/text-translate.component';
 
 const routes: Routes = [
   { path: '', component: ReadmePageComponent },
   { path: 'login', component: UserLoginComponent, },
   { path: 'chat', component: ChatComponent, },
+  { path: 'text-translate', component: TextTranslateComponent, },
   { path: 'items', component: ItemsListComponent, canActivate: [AuthGuard]},
   { path: 'uploads', loadChildren: "./uploads/shared/upload.module#UploadModule" }
-  // { path: 'uploads', component: UploadsListComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

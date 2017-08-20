@@ -15,8 +15,11 @@
     "comments": {
       ".read": true,
       ".write": true
+    },
+    "translations": {
+          ".read": true,
+          ".write": true
     }
-
 
   }
 }

@@ -30,10 +30,14 @@ import { ChatComponent } from './chat/chat.component';
 //adsense
 import { AdsenseModule } from 'ng2-adsense';
 
+//TextTranslateComponent
+import { TextTranslateComponent } from './text-translate/text-translate.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
+    TextTranslateComponent,
   ],
   imports: [
     BrowserModule,
