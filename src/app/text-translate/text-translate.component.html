@@ -2,9 +2,14 @@
 <textarea  rows="8" cols="40" class="input" [(ngModel)]="userText">
 </textarea>
 <button (click)="handleTranslation()" class="button is-primary">翻訳</button>
+
+<h3>日本語</h3>
+{{ (currentTranslation | async)?.ja || defaultMessage() }}
+
 <h3>フランス語</h3>
 {{ (currentTranslation | async)?.fr || defaultMessage() }}
 <h3>スペイン語</h3>
 {{ (currentTranslation | async)?.es || defaultMessage() }}
 <h3>アラビア語</h3>
 {{ (currentTranslation | async)?.ar || defaultMessage() }}
+

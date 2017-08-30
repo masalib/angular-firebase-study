@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent, },
   { path: 'text-translate', component: TextTranslateComponent, },
   { path: 'items', component: ItemsListComponent, canActivate: [AuthGuard]},
-  { path: 'uploads', loadChildren: "./uploads/shared/upload.module#UploadModule" }
+  { path: 'uploads', loadChildren: "./uploads/shared/upload.module#UploadModule" },
+  { path: 'uploads2', loadChildren: "./uploads2/shared/upload.module#UploadModule2" }
 ];
 
 @NgModule({

@@ -1,8 +1,5 @@
 <div class="page">
   <section class="card">
-    <div class="card-header">
-      NgChat　
-    </div>
     <div class="card-block">
       <ng-container *ngFor="let comment of comments;let i=index"><!-- iを追加 -->
         <div class="media">
@@ -36,9 +33,6 @@
         <hr> 
       </ng-container>
     </div>
-  </section>
-
-  <section class="page-footer">
     <form class="chart-form">
       <div class="input-group">
         <input type="text" class="form-control" 

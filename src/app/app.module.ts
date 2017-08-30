@@ -33,6 +33,10 @@ import { AdsenseModule } from 'ng2-adsense';
 //TextTranslateComponent
 import { TextTranslateComponent } from './text-translate/text-translate.component';
 
+import { UploadModule2 } from './uploads2/shared/upload.module';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
