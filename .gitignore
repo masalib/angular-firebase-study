@@ -3,7 +3,9 @@
 /src/environments/environment.prod.ts
 /src/environments/environment.ts
 NOTES.md
-functions/*
+#functions/*.json
+functions/angular-study-chat-cbe543f3f678.json
+functions/service-account-credentials.json
 
 # compiled output
 /dist
